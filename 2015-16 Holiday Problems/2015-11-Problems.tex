@@ -1,0 +1,209 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage {parskip}
+\usepackage [margin=2.5cm] {geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+
+%% START SPECIAL SECTION %%
+\usetkzobj{all}
+\usepackage{import}
+\usepackage{subcaption}
+\usepackage{float}
+%% END SPECIAL SECTION %%
+
+\begin{document}
+
+%=======%
+% TITLE %
+%=======%
+
+\includegraphics[scale=0.4]{logo.png}
+\begin{center}
+\LARGE
+\textbf{NZMOSA 2015-16 Summer Holiday Problems}
+\end{center}
+
+%==============%
+% INSTRUCTIONS %
+%==============%
+
+\normalsize
+\section*{Instructions}
+\begin{itemize}
+    \item You may attempt any question, regardless of your division.
+    \item For questions 3 to 10, each question is worth 5 marks; a correct answer with no working or explanation will earn at most one of these marks. An incorrect answer with working which may lead to a full solution may earn more than one mark.
+    \item No working is required for questions 1 and 2; a correct answer will earn 3 marks, and an incorrect answer will earn 0 marks.
+    \item You can spend as much time on these problems as you want throughout the months of November, December and January.
+    \item You may use the internet to look for terms that you don't understand. However, what you submit must represent your own individual work: you should not collaborate with anyone else for these problems.
+    \item Email your solutions (scanned or typed) to \url{nzmosa@outlook.com} with your name, school and school name by the end of January.
+    \item Keep in mind that we reward creative solutions!
+    \item For more details, see \textit{Competitions $\to$ Competition Details} at \url{nzmosa.org}.
+\end{itemize}
+
+%==========%
+% PROBLEMS %
+%==========%
+
+\section*{Problems}
+\begin{enumerate}
+    \item 
+    A man is driving from Christchurch to Dunedin at \SI[per-mode=symbol]{80}{\kilo\meter\per hr}. After driving for 2 hours, he reaches Timaru. After this, he gets a bit lost and makes the total trip \SI{40}{\kilo\meter} longer. To try to get to Dunedin faster, he increases his speed to \SI[per-mode=symbol]{85}{\kilo\meter\per hr} (it's an old car, and can't go any faster than this), but was still late by 20 minutes. Find the total distance he travelled.
+    
+    \item 
+    The lengths of the sides of a triangle are $k+1$, $7-k$ and $4k+2$. What are the possible value(s) of $k$ for which the triangle is isosceles?
+    
+    \item 
+    Solve the following equation for positive real values of $x$:
+    \[ x = (2x-1) \cdot 2^{x-1}. \]
+    
+    \item 
+    There are $n$ students in a year group, and 14 possible subjects choices in total. Each of them takes 5 subjects and each pair of subjects is taken by $k$ students. Find the minimum possible values of $n$ and $k$.
+    
+    \item 
+    In triangle $ABC$, $AB=\SI{4}{\centi\meter}$, $AC=\SI{6}{\centi\meter}$, and $D$ lies on side $BC$ such that $BD=DC$. Find the range of values the length of side $AD$ can take.
+    
+    \begin{center}
+        \begin{tikzpicture}[scale=1.5]
+            \tkzDefPoint(1,2){A}
+            \tkzDefPoint(0,0){B}
+            \tkzDefPoint(3,0){C}
+            \tkzDefPoint(1.5,0){D}
+            \tkzDrawPolygon(A,B,C)
+            \tkzDrawSegment(A,D)
+            \tkzDrawPoints(D)
+            \tkzLabelPoints[above](A)
+            \tkzLabelPoints[below left](B)
+            \tkzLabelPoints[below right](C)
+            \tkzLabelPoints[below](D)
+            % to label or not to label:
+            \tkzLabelSegment[above left](A,B){\SI{4}{\centi\meter}}
+            \tkzLabelSegment[above right](A,C){\SI{6}{\centi\meter}}
+        \end{tikzpicture}
+    \end{center}
+    
+    \item 
+    Let $\Gamma$ be a circle and let point $P$ be a point outside the circle. Two tangents are drawn from $P$ to $\Gamma$, where $A$ and $B$ are the points of tangency. Let $C$ be a point on the circle $\Gamma$ such that $BC$ is parallel to $AP$, and let $D$ be a point on $AP$ such that $AC$ is parallel to $BD$. Prove that $AB$ is tangent to the circumcircle of $PBD$.
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzInit[xmin=-2.5,xmax=7,ymin=-3.5,ymax=3]
+            \tkzClip
+            \tkzDefPoint(0,0){KCenter}
+            \tkzDrawCircle[R, color=red, very thick](KCenter,2cm)
+            \tkzDefPoint(5,2){P}
+            
+            \tkzTangent[from with R= P](KCenter, 2cm) \tkzGetPoints{A}{B}
+            \tkzDrawSegment(P,A)
+            \tkzDrawSegment(P,B)
+            
+            \tkzDefLine[parallel=through B](A,P)
+            \tkzInterLC[R](B,tkzPointResult)(KCenter, 2cm) \tkzGetSecondPoint{C}
+            \tkzDrawSegment(B,C)
+            \tkzDrawSegment(C,A)
+            
+            \tkzDefLine[parallel=through B](C,A)
+            \tkzInterLL(B,tkzPointResult)(A,P) \tkzGetPoint{D}
+            \tkzDrawSegment(B,D)
+            
+            \tkzCircumCenter(P,B,D)\tkzGetPoint{G}
+            \tkzDrawCircle[color=blue, very thick](G,P)
+            \tkzDrawSegment[color=blue, very thick](A,B)
+            
+            % To reset the thickness of the circles -- if this line is removed the point dots increase in size weirdly
+            \tkzDrawCircle[R, thin](KCenter, 0cm)
+            
+            \tkzDrawPoint(P)
+            \tkzDrawPoint(A)
+            \tkzDrawPoint(B)
+            \tkzDrawPoint(C)
+            \tkzDrawPoint(D)
+            
+            \tkzLabelPoints[above right](P)
+            \tkzLabelPoints[above](A,D)
+            \tkzLabelPoints[right](B)
+            \tkzLabelPoints[below left](C)
+            \tkzDefPoint(150:2){K}
+            \tkzLabelPoint[above left, color=red](K){$\mathbf{\Gamma}$}
+        \end{tikzpicture}
+    \end{center}
+    
+    \item 
+    %TOWER OF HANOI QUESTION%
+    There are $n$ disks with different sizes. There are also three pegs, A, B and C. The $n$ disks are put on peg A in order of size, with the larger disks further down the bottom and the smaller disks higher up the top. Two players move the the disks between the pegs according to the following three rules:
+    \begin{enumerate}[label=(\roman*)]
+        \item Only one disk from the top of a peg can be moved at a time
+        \item A larger disk cannot be put over a smaller disk
+        \item A player cannot undo the previous player's move (for example, if Player 1 moves a disk from peg A to peg B, then Player 2 cannot move the same disk from peg B back to peg A).
+    \end{enumerate}
+    Player 1 starts first, and Player 1 wins the game if all disks are eventually transferred (by either player) from peg A to another peg. For what values of $n$ does Player 1 have a winning strategy?
+    
+    %Note with the annoying formatting
+      \emph{Note:} To demonstrate that Player 1 has a winning strategy (for some value of $n$), you need to show that Player 1 can play in such a way so that all the discs end up on either peg B or C, no matter what Player 2 does.
+      
+      To show that Player 1 does not have a winning strategy (for some value of $n$), you will need to explain why Player 2 is able to prevent all the discs from ending up on peg B or C, no matter what Player 1 does.
+        
+    If this seems really confusing, it's just a two-player adaption of the \underline{Tower of Hanoi} game, see \url{tinyurl.com/tohanoi}.
+    %\\
+    
+    % It works!! omg omg omg
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[t]{0.4\textwidth}
+            \def\svgwidth{\textwidth}
+            \subimport{hanoi/}{start.pdf_tex}
+            \caption{Starting setup.}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.4\textwidth}
+            \centering
+            \def\svgwidth{\textwidth}
+            \subimport{hanoi/}{win.pdf_tex}
+            \caption{Player 1 wins whenever this occurs.}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.4\textwidth}
+            \centering
+            \def\svgwidth{\textwidth}
+            \subimport{hanoi/}{intermediate.pdf_tex}
+            \caption{A possible mid-game scenario}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.4\textwidth}
+            \centering
+            \def\svgwidth{0.65\textwidth}
+            \subimport{hanoi/}{bad.pdf_tex}
+            \caption{Rule breaking.}
+        \end{subfigure}
+        \caption{Possible situations for the game.}
+    \end{figure}
+
+    \item
+    Find all prime numbers $p$ such that $4p^2+1$ and $6p^2+1$ are also prime.
+    
+    \item 
+    Is there a positive integer such that if you move its last digit (in decimal) to the front, it becomes half the original integer? If so, what is it? If not, prove that no such positive integer exists.
+    
+    \emph{For example:} 54321 becomes 15432, but this is not half of 54321
+    
+    \item 
+    Suppose that $90^\circ < \theta < 180^\circ$, and $\sin^4 \theta + \cos^4 \theta  = \dfrac{5}{9}$. Find the value of $\sin^2 \theta$.
+\end{enumerate}
+
+%==========%
+%END_THANKS%
+%==========%
+\vfill
+\begin{center}
+\LARGE{\textbf{Thank you!}}
+\end{center}
+From all of us here at NZMOSA, we hope all of you have a great summer break. It's been an awesome year for us (and hopefully you guys as well) with the Monthly Problems and the NZMO, and we hope you guys stick around for future years -- we'll still be publishing the monthly problems and NZMO next year. Good luck to all of the 2015 school leavers, we hope you have a great time wherever life takes you. If you've got into an Olympiad camp this year, we hope you do well. Lastly, remember we have a Facebook page at \url{fb.me/nzmosa} which we'll be updating over summer with more problems, pictures, and other content, so be sure to give us a like if you want to remain up to date.
+
+\textit{Happy Holidays from the NZMOSA Committee!}
+\clearpage
+\end{document}
